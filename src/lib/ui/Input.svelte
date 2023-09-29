@@ -3,11 +3,14 @@
 	export let name: string;
 	export let required = false;
 	export let placeholder: string | undefined = undefined;
+	export let error: string | undefined = undefined;
+	export let value: unknown = null;
 </script>
 
 <div class="field">
 	<label for={name}><slot /></label>
-	<input id={name} {name} {type} {required} {placeholder} />
+	<input id={name} {name} {type} {required} {placeholder} {value} />
+	{#if !!error}<p class="error">{error}</p>{/if}
 </div>
 
 <style lang="scss">
@@ -27,5 +30,11 @@
 		padding: 0.5rem;
 		border-radius: 5px;
 		font-size: 1rem;
+	}
+
+	.error {
+		color: #ef4444;
+		font-size: 0.75rem;
+		margin-top: 0.25rem;
 	}
 </style>

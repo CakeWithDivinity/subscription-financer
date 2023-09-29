@@ -11,6 +11,8 @@
 		"password": "Password",
 		"retypePassword": "Retype Password",
 		"noAccount": "Don't have an account yet? Click here to sign up",
-		"existingAccount": "Already have an account? Click here to login"
+		"existingAccount": "Already have an account? Click here to login",
+		"existingEmail": "An account with that email already exists!",
+		"mismatch": "The passwords don't match up"
 	}
 }
