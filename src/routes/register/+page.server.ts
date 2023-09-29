@@ -1,4 +1,4 @@
-import { fail, type Actions } from '@sveltejs/kit';
+import { fail, type Actions, redirect } from '@sveltejs/kit';
 import { hashPassword } from '$lib/server/auth/hash-password';
 import prisma from '$lib/prisma';
 
@@ -28,11 +28,11 @@ export const actions: Actions = {
 			await prisma.user.create({
 				data: { email: email.toString(), password: hash, salt }
 			});
-
-			return { success: true };
 		} catch (e) {
 			console.error(e);
 			return fail(500);
 		}
+
+		throw redirect(303, '/login');
 	}
 };

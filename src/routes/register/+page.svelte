@@ -15,7 +15,7 @@
 		type="email"
 		placeholder="john.doe@gmail.com"
 		required
-		value={form?.email}
+		value={form?.email ?? null}
 		error={form?.existing ? $_('auth.existingEmail') : undefined}
 	>
 		{$_('auth.email')}

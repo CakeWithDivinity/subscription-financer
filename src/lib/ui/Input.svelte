@@ -5,11 +5,16 @@
 	export let placeholder: string | undefined = undefined;
 	export let error: string | undefined = undefined;
 	export let value: unknown = null;
+
+	const handleInput = (e: Event) => {
+		const target = e.target as HTMLInputElement;
+		value = type.match(/^(number|range)$/) ? +target.value : target.value;
+	};
 </script>
 
 <div class="field">
 	<label for={name}><slot /></label>
-	<input id={name} {name} {type} {required} {placeholder} {value} />
+	<input id={name} {name} {type} {value} {required} {placeholder} on:input={handleInput} />
 	{#if !!error}<p class="error">{error}</p>{/if}
 </div>
 
