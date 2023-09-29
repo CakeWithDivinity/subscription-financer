@@ -2,6 +2,15 @@
 	"hero": {
 		"heading": "Organize your monthly expenses",
 		"subtitle": "Use a second bank account for periodical payments like insurances, subscriptions and more",
-		"button": "Start by adding your first expense"
+		"signUpButton": "Start by creating your account"
+	},
+	"auth": {
+		"register": "Register",
+		"login": "Login",
+		"email": "Email Address",
+		"password": "Password",
+		"retypePassword": "Retype Password",
+		"noAccount": "Don't have an account yet? Click here to sign up",
+		"existingAccount": "Already have an account? Click here to login"
 	}
 }
