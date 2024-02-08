@@ -38,6 +38,7 @@ export const actions: Actions = {
 				}
 			});
 		} catch (error) {
+			console.error(error);
 			throw fail(500);
 		}
 
