@@ -9,6 +9,7 @@
 	export let prefix: string | undefined = undefined;
 	export let min: number | undefined = undefined;
 	export let max: number | undefined = undefined;
+	export let step: number | undefined = undefined;
 
 	const handleInput = (e: Event) => {
 		const target = e.target as HTMLInputElement;
@@ -29,6 +30,7 @@
 			{placeholder}
 			{min}
 			{max}
+			{step}
 			title={info}
 			class:with-prefix={!!prefix}
 			on:input={handleInput}

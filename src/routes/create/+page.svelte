@@ -6,8 +6,6 @@
 	import Select from '$lib/ui/Select.svelte';
 	import { _ } from 'svelte-i18n';
 
-	export let form;
-
 	const intervalOptions = [
 		{ name: $_('create.intervals.monthly'), value: 'monthly' },
 		{ name: $_('create.intervals.quaterly'), value: 'quaterly' },
@@ -15,7 +13,7 @@
 		{ name: $_('create.intervals.custom'), value: 'custom' }
 	] as const satisfies { name: string; value: string }[];
 
-	let intervalValue: (typeof intervalOptions)[number]['value'] | undefined = 'monthly';
+	let intervalValue: (typeof intervalOptions)[number]['value'] | undefined = undefined;
 
 	const monthOptions = [
 		{ name: $_('create.months.january'), value: 1 },
@@ -36,13 +34,7 @@
 <form method="POST" use:enhance>
 	<h1>{$_('create.title')}</h1>
 
-	<Input
-		name="name"
-		placeholder="Spotify premium"
-		info={$_('create.nameInfo')}
-		required
-		value={form?.error.name ?? null}
-	>
+	<Input name="name" placeholder="Spotify premium" info={$_('create.nameInfo')} required>
 		{$_('create.name')}
 	</Input>
 
@@ -65,7 +57,7 @@
 		{$_('create.monthOfPayment')}
 	</Select>
 
-	<Input type="number" name="amount" prefix="€" required info={$_('create.amountInfo')}>
+	<Input type="number" name="amount" prefix="€" step={0.01} required info={$_('create.amountInfo')}>
 		{$_('create.amount')}
 	</Input>
 

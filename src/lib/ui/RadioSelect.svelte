@@ -16,6 +16,7 @@
 					id={option.value}
 					{name}
 					value={option.value}
+					checked={value === option.value}
 					on:change={() => (value = option.value)}
 				/>
 				<label for={option.value}>{option.name}</label>
