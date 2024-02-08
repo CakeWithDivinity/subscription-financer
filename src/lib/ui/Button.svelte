@@ -21,5 +21,6 @@
 		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 		-webkit-tap-highlight-color: transparent;
 		transition: all 125ms ease;
+		width: 100%;
 	}
 </style>
