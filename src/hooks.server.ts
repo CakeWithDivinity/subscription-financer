@@ -20,6 +20,7 @@ const auth = SvelteKitAuth({
 	pages: {
 		error: '/login'
 	},
+	trustHost: true,
 	providers: [
 		Credentials({
 			credentials: {
