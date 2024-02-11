@@ -4,9 +4,11 @@
 	import Button from '$lib/ui/Button.svelte';
 	import Input from '$lib/ui/Input.svelte';
 	import { signIn } from '@auth/sveltekit/client';
+	import { page } from '$app/stores';
 
 	let email = '';
 	let password = '';
+	let errorCred = $page.url.searchParams.get('error');
 
 	const login = (event: Event) => {
 		event.preventDefault();
@@ -20,10 +22,19 @@
 
 <form method="POST">
 	<h1>{$_('auth.login')}</h1>
-	<Input name="email" type="email" placeholder="john.doe@gmail.com" bind:value={email} required>
+	<Input 
+	name="email" 
+	type="email" 
+	placeholder="john.doe@gmail.com" bind:value={email} 
+	required>
 		{$_('auth.email')}
 	</Input>
-	<Input name="password" type="password" bind:value={password} required>
+	<Input 
+		name="password" 
+		type="password" bind:value={password} 
+		required
+		error= {errorCred ? $_('auth.errorCredentialsSignin') : undefined}
+	>
 		{$_('auth.password')}
 	</Input>
 	<div class="actions">

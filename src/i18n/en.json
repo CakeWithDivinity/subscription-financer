@@ -13,7 +13,8 @@
 		"noAccount": "Don't have an account yet? Click here to sign up",
 		"existingAccount": "Already have an account? Click here to login",
 		"existingEmail": "An account with that email already exists!",
-		"mismatch": "The passwords don't match up"
+		"mismatch": "The passwords don't match up",
+		"errorCredentialsSignin": "Password or email is wrong, please correct and try again"
 	},
 	"create": {
 		"title": "Create an expense",
