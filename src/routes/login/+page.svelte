@@ -15,7 +15,7 @@
 		signIn('credentials', {
 			email,
 			password,
-			callbackUrl: '/'
+			callbackUrl: '/dashboard'
 		});
 	};
 </script>
