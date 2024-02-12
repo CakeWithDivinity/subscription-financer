@@ -22,19 +22,15 @@
 
 <form method="POST">
 	<h1>{$_('auth.login')}</h1>
-	<Input 
-		name="email" 
-		type="email" 
-		placeholder="john.doe@gmail.com" bind:value={email} 
-		required
-	>
+	<Input name="email" type="email" placeholder="john.doe@gmail.com" bind:value={email} required>
 		{$_('auth.email')}
 	</Input>
-	<Input 
-		name="password" 
-		type="password" bind:value={password} 
+	<Input
+		name="password"
+		type="password"
+		bind:value={password}
 		required
-		error= {errorCredentials ? $_('auth.errorCredentialsSignin') : undefined}
+		error={errorCredentials ? $_('auth.errorCredentialsSignin') : undefined}
 	>
 		{$_('auth.password')}
 	</Input>
