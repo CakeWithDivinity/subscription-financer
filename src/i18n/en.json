@@ -50,5 +50,10 @@
 		"amount": "Amount",
 		"amountInfo": "How much money will be withdrawn each period?",
 		"action": "Create expense"
+	},
+	"edit": {
+		"delete": "Delete expense",
+		"save": "Save expense"
 	}
+
 }
