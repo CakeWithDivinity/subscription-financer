@@ -15,9 +15,16 @@
     </code>
   </pre>
 
+<!--
+  <form method="POST" action="?/updateExpense">
+	  <div class="action">
+		  <Button type="submit">{$_('edit.save')}</Button>
+	  </div>
+  </form>
+-->
+
 <form method="POST" action="?/deleteExpense">
 	<div class="action">
-		<Button type="submit">{$_('edit.save')}</Button>
 		<Button type="submit">{$_('edit.delete')}</Button>
 	</div>
 </form>
