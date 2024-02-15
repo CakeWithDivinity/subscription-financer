@@ -40,7 +40,7 @@
   </form>
 -->
 
-<button on:click={handleDelete}>Open Modal</button>
+<button on:click={handleDelete}>{$_('edit.delete')}</button>
 
 <form method="POST" action="?/deleteExpense">
 	<div class="action">
