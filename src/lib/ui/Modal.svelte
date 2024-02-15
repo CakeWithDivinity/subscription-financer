@@ -4,18 +4,19 @@
     // provided by <Modals />
     export let isOpen
   
-    export let title
     export let message
-  
+    export let onConfirm
+    export let labels = { cancel: 'Cancel', confirm: 'OK' }
+
   </script>
   
   {#if isOpen}
     <div role="dialog" class="modal">
       <div class="contents">
-        <h2>{title}</h2>
         <p>{message}</p>
         <div class="actions">
-          <button on:click={closeModal}>OK</button>
+          <button on:click={closeModal}> {labels?.cancel}</button>
+          <button on:click={onConfirm}> {labels?.confirm}</button>
         </div>
       </div>
     </div>

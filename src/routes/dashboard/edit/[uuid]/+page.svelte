@@ -5,16 +5,26 @@
 	import RadioSelect from '$lib/ui/RadioSelect.svelte';
 	import Select from '$lib/ui/Select.svelte';
 	import { _ } from 'svelte-i18n';
-	import { openModal } from 'svelte-modals';
-  	import Modal from '$lib/ui/Modal.svelte';
+	import { openModal, closeModal } from 'svelte-modals';
+	import ConfirmModal from '$lib/ui/Modal.svelte';
 
-  function handleClick() {
-    openModal(Modal, { title: "Alert", message: "This is an alert" })
-  }
+	function handleDelete() {
+		openModal( ConfirmModal,
+			{
+				message: 'Are you sure you want to delete this entry?',
+				labels: {
+					cancel: "No",
+					confirm: "Yes"
+				},
+				onConfirm: () => {
+            	console.log('confirmed deletion');
+				closeModal()
+          }
+		})
+	}
 
 	export let data;
 </script>
-
 
 <pre>
     <code>
@@ -30,15 +40,13 @@
   </form>
 -->
 
-<button on:click={handleClick}>Open Modal</button>
-
+<button on:click={handleDelete}>Open Modal</button>
 
 <form method="POST" action="?/deleteExpense">
 	<div class="action">
 		<Button type="submit">{$_('edit.delete')}</Button>
 	</div>
 </form>
-
 
 <style lang="scss">
 	form {
