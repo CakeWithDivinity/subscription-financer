@@ -5,15 +5,22 @@
 	import RadioSelect from '$lib/ui/RadioSelect.svelte';
 	import Select from '$lib/ui/Select.svelte';
 	import { _ } from 'svelte-i18n';
+	import { openModal } from 'svelte-modals';
+  	import Modal from '$lib/ui/Modal.svelte';
+
+  function handleClick() {
+    openModal(Modal, { title: "Alert", message: "This is an alert" })
+  }
 
 	export let data;
 </script>
+
 
 <pre>
     <code>
       {JSON.stringify(data.expenses)}
     </code>
-  </pre>
+</pre>
 
 <!--
   <form method="POST" action="?/updateExpense">
@@ -23,11 +30,15 @@
   </form>
 -->
 
+<button on:click={handleClick}>Open Modal</button>
+
+
 <form method="POST" action="?/deleteExpense">
 	<div class="action">
 		<Button type="submit">{$_('edit.delete')}</Button>
 	</div>
 </form>
+
 
 <style lang="scss">
 	form {
