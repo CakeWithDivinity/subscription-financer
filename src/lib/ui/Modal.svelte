@@ -9,7 +9,7 @@
     export let labels = { cancel: 'Cancel', confirm: 'OK' }
 
   </script>
-  
+
   {#if isOpen}
     <div role="dialog" class="modal">
       <div class="contents">

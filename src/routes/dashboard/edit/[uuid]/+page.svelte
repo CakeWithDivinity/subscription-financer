@@ -9,18 +9,20 @@
 	import ConfirmModal from '$lib/ui/Modal.svelte';
 
 	function handleDelete() {
-		openModal( ConfirmModal,
-			{
-				message: 'Are you sure you want to delete this entry?',
-				labels: {
-					cancel: "No",
-					confirm: "Yes"
-				},
-				onConfirm: () => {
-            	console.log('confirmed deletion');
-				closeModal()
-          }
-		})
+		openModal(ConfirmModal, {
+			message: 'Are you sure you want to delete this entry?',
+			labels: {
+				cancel: 'No',
+				confirm: 'Yes'
+			},
+			onConfirm: () => {
+				console.log('confirmed deletion');
+				fetch('?/deleteExpense', {
+					method: 'POST'
+				});
+				closeModal();
+			}
+		});
 	}
 
 	export let data;
@@ -47,6 +49,8 @@
 		<Button type="submit">{$_('edit.delete')}</Button>
 	</div>
 </form>
+
+<form method="POST" action="?/deleteExpense" />
 
 <style lang="scss">
 	form {
