@@ -66,5 +66,9 @@
 	"noExpensesDisclaimer": {
 		"title": "You don't have any tracked expenses right now",
 		"button": "Start by creating your first expense"
+	},
+	"expenseSummary": {
+		"perMonth": "per month",
+		"infoText": "This is the amount of money that should be moved to your second bank account every month to cover all expenses"
 	}
 }
