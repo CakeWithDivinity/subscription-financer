@@ -62,5 +62,9 @@
 			"cancel": "Cancel",
 			"confirm": "Delete"
 		}
+	},
+	"noExpensesDisclaimer": {
+		"title": "You don't have any tracked expenses right now",
+		"button": "Start by creating your first expense"
 	}
 }
