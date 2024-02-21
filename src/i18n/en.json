@@ -70,5 +70,16 @@
 	"expenseSummary": {
 		"perMonth": "per month",
 		"infoText": "This is the amount of money that should be moved to your second bank account every month to cover all expenses"
+	},
+	"monthlyExpenseView": {
+		"title": "Expenses",
+		"type": "Type",
+		"name": "Name",
+		"amount": "Amount"
+	},
+	"monthRadioSelect": {
+		"previous": "Previous",
+		"current": "Current month",
+		"next": "Next"
 	}
 }
