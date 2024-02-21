@@ -1,9 +1,10 @@
 <script lang="ts">
 	export let type: 'button' | 'text' = 'button';
 	export let href: string;
+	export let slim = false;
 </script>
 
-<a {href} class:button={type === 'button'} class:text={type === 'text'}>
+<a {href} class:button={type === 'button'} class:text={type === 'text'} class:slim>
 	<slot />
 </a>
 
@@ -24,6 +25,11 @@
 			-webkit-tap-highlight-color: transparent;
 			transition: all 125ms ease;
 			text-align: center;
+
+			&.slim {
+				padding: 1ch 0.5rem;
+				font-size: 1rem;
+			}
 
 			&:active {
 				background-color: var(--background);

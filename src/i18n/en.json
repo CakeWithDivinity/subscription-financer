@@ -81,5 +81,12 @@
 		"previous": "Previous",
 		"current": "Current month",
 		"next": "Next"
+	},
+	"expenseList": {
+		"title": "All expenses",
+		"create": "Create expense",
+		"start": "Start",
+		"name": "Name",
+		"amount": "Amount"
 	}
 }
