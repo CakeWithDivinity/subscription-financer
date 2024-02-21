@@ -1,8 +1,9 @@
 <script lang="ts">
-	export let options: { name: string; value: string }[];
+	import { _ } from 'svelte-i18n';
+	export let options: { name: string; value: string | number }[];
 	export let name: string;
 
-	export let value: string | undefined = undefined;
+	export let value: string | number | undefined = undefined;
 </script>
 
 <fieldset>
@@ -13,13 +14,13 @@
 			<div class="option" class:selected={value === option.value}>
 				<input
 					type="radio"
-					id={option.value}
+					id={option.value.toString()}
 					{name}
 					value={option.value}
 					checked={value === option.value}
 					on:change={() => (value = option.value)}
 				/>
-				<label for={option.value}>{option.name}</label>
+				<label for={option.value.toString()}>{$_(option.name)}</label>
 			</div>
 		{/each}
 	</div>

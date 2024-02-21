@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ExpenseSummary from '$lib/ui/ExpenseSummary.svelte';
+	import MonthlyExpenseView from '$lib/ui/MonthlyExpenseView.svelte';
 	import NoExpensesDisclaimer from '$lib/ui/NoExpensesDisclaimer.svelte';
 
 	export let data;
@@ -9,4 +10,5 @@
 	<NoExpensesDisclaimer />
 {:else}
 	<ExpenseSummary expenses={data.expenses} />
+	<MonthlyExpenseView expenses={data.expenses} />
 {/if}
