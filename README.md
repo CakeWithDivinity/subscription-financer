@@ -1,38 +1,45 @@
-# create-svelte
+# subscription-financer
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This project is an online tool for managing periodic payments like subscriptions and insurances.
+It accumulates the average amount of money being withdrawn from your bank account, so that
+you can ensure enough money is deposited on it. I personally use this to have a seperate
+bank account where all of my periodic payments are being withdrawn from. Once per month I deposit
+money on that bank account. This helps making insurances cheaper, by paying them in yearly bills
+instead of monthly ones.
 
-## Creating a project
+I originally created this project for a paper, which we had to write in university. This project is
+still under active development however and is used by a few friends of mine, my family and some
+people that follow the same finance plan like me. So feel free to use this or contribute to the
+project by creating an issue or pull request.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Setup
 
 ```bash
-npm run dev
+# setup a postgres database with the included docker-compose file
+# (you can skip this step if you start your database in a different way)
+docker compose up -d
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# copy the `.env.example` into `.env` and edit it to your needs
+cp .env.example .env
+
+# install necessary dependencies
+pnpm install
+
+# migrate the database to reflect the prisma schema
+pnpm db:migrate
+
+# start the application
+pnpm dev
 ```
 
-## Building
+## Contributing
 
-To create a production version of your app:
+Raise an issue if you have feature requests, found a bug or got any other questions.
 
-```bash
-npm run build
-```
+Create a pull request if you want to contribute code. The github action will validate
+it against this projects code standard
 
-You can preview the production build with `npm run preview`.
+It is recommended to use the following tools for development:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
