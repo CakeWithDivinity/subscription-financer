@@ -5,6 +5,8 @@
 	import RadioSelect from '$lib/ui/RadioSelect.svelte';
 	import Select from '$lib/ui/Select.svelte';
 	import { _ } from 'svelte-i18n';
+	import { openModal, closeModal } from 'svelte-modals';
+	import ConfirmModal from '$lib/ui/Modal.svelte';
 
 	const intervalOptions = [
 		{ name: $_('create.intervals.monthly'), value: 'monthly' },
@@ -30,19 +32,54 @@
 		{ name: $_('create.months.december'), value: 12 }
 	] satisfies { name: string; value: number }[];
 
-	let testdata = {
-		testname: "random stuff"
+
+	let deleteform: HTMLFormElement
+	let updateform: HTMLFormElement
+
+	//TODO: put text in en.json
+	function handleDelete() {
+		openModal(ConfirmModal, {
+			message: 'Are you sure you want to delete this entry?',
+			labels: {
+				cancel: 'No',
+				confirm: 'Yes'
+			},
+			onConfirm: () => {
+				console.log('confirmed deletion');
+				deleteform.submit()
+				closeModal();
+			}
+		});
 	}
+	export let data;
 </script>
 
-<form method="POST" use:enhance>
-	<h1>{$_('create.title')}</h1>
 
+<!--
+	<pre>
+		<code>
+		  {JSON.stringify(data.expenses)}
+		</code>
+	</pre>
+  <form method="POST" action="?/updateExpense">
+	  <div class="action">
+		  <Button type="submit">{$_('edit.save')}</Button>
+	  </div>
+  </form>
+-->
+
+
+<form bind:this={deleteform} method="POST" action="?/deleteExpense">
+</form>
+
+<form method="POST" action="?/updateExpense" use:enhance>
+	<h1>{$_('create.title')}</h1>
+	
 	<Input
 	name="name" placeholder="Spotify premium" info={$_('create.nameInfo')} required>
-		{$_('create.name')}
+	{$_('create.name')}
 	</Input>
-
+	
 	<RadioSelect name="interval" options={intervalOptions} bind:value={intervalValue}>
 		{$_('create.interval')}
 	</RadioSelect>
@@ -65,11 +102,14 @@
 	<Input type="number" name="amount" prefix="€" step={0.01} required info={$_('create.amountInfo')}>
 		{$_('create.amount')}
 	</Input>
-
+	
 	<div class="action">
 		<Button type="submit">{$_('create.action')}</Button>
 	</div>
+	
 </form>
+
+<button on:click={handleDelete}>{$_('edit.delete')}</button>
 
 <style lang="scss">
 	form {
