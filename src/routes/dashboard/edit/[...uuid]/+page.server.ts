@@ -19,7 +19,7 @@ const deleteExpenseSchema = z.object({
 
 
 export const actions: Actions = {
-    updateExpense: async ({event, params: { uuid }}) => {
+    updateExpense: async (event) => {
 		const session = await event.locals.getSession();
 
 		if (!session?.user?.email) {
@@ -35,7 +35,8 @@ export const actions: Actions = {
 
 		try {
 			await prisma.expense.update({
-                where: {id: uuid},
+                //todo: change to dynamic wir use of params
+                where: {id: "dd05d804-47b2-4d5b-b7a1-2039908f2fc8"},
 				data: {
 					name: expenseData.data.name,
 					amount: expenseData.data.amount,
