@@ -35,8 +35,7 @@ export const actions: Actions = {
 
 		try {
 			await prisma.expense.update({
-                //todo: change to dynamic wir use of params
-                where: {id: "dd05d804-47b2-4d5b-b7a1-2039908f2fc8"},
+                where: {id: event.params.uuid},
 				data: {
 					name: expenseData.data.name,
 					amount: expenseData.data.amount,
@@ -87,10 +86,11 @@ export const load: PageServerLoad = async ({parent, params }) => {
 
 	return {
 		// todo: mail mit in query einfügen { where: { user: { email: session.user.email } } })
-        expenses: prisma.expense.findMany({ 
+        expenses: prisma.expense.findFirst({ 
             where: {id: params.uuid}
 			}
 		)
+        //oder user
 	};
 };
 

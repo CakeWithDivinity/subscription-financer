@@ -68,7 +68,6 @@
   </form>
 -->
 
-
 <form bind:this={deleteform} method="POST" action="?/deleteExpense">
 </form>
 
@@ -76,7 +75,7 @@
 	<h1>{$_('create.title')}</h1>
 	
 	<Input
-	name="name" placeholder="Spotify premium" info={$_('create.nameInfo')} required>
+	name="name" value={data.expenses.name} placeholder="Spotify premium" info={$_('create.nameInfo')} required>
 	{$_('create.name')}
 	</Input>
 	
