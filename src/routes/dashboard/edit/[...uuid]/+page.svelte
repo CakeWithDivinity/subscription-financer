@@ -7,6 +7,7 @@
 	import { _ } from 'svelte-i18n';
 	import { openModal, closeModal } from 'svelte-modals';
 	import ConfirmModal from '$lib/ui/Modal.svelte';
+	import { ExpenseInterval } from '@prisma/client';
 
 	const intervalOptions = [
 		{ name: $_('create.intervals.monthly'), value: 'monthly' },
@@ -39,10 +40,10 @@
 	//TODO: put text in en.json
 	function handleDelete() {
 		openModal(ConfirmModal, {
-			message: 'Are you sure you want to delete this entry?',
+			message: $_('edit.delete.confirmQuestion'),
 			labels: {
-				cancel: 'No',
-				confirm: 'Yes'
+				cancel: $_('edit.delete.cancel'),
+				confirm: $_('edit.delete.confirm')
 			},
 			onConfirm: () => {
 				console.log('confirmed deletion');
@@ -55,12 +56,13 @@
 </script>
 
 
+<pre>
+	<code>
+		{JSON.stringify(data.expenses)}
+	</code>
+</pre>
+
 <!--
-	<pre>
-		<code>
-		  {JSON.stringify(data.expenses)}
-		</code>
-	</pre>
   <form method="POST" action="?/updateExpense">
 	  <div class="action">
 		  <Button type="submit">{$_('edit.save')}</Button>
@@ -72,7 +74,7 @@
 </form>
 
 <form method="POST" action="?/updateExpense" use:enhance>
-	<h1>{$_('create.title')}</h1>
+	<h1>{$_('edit.title')}</h1>
 	
 	<Input
 	name="name" value={data.expenses.name} placeholder="Spotify premium" info={$_('create.nameInfo')} required>
@@ -88,7 +90,7 @@
 			<p class="custom-label">{$_('create.custom.label')}</p>
 			<div class="custom-interval">
 				<p>{$_('create.custom.every')}</p>
-				<Input name="customMonths" type="number" required placeholder="3" min={1} />
+				<Input value={data.expenses?.customMonths} name="customMonths" type="number" required placeholder="3" min={1} />
 				<p>{$_('create.custom.months')}</p>
 			</div>
 		</div>
@@ -98,17 +100,17 @@
 		{$_('create.monthOfPayment')}
 	</Select>
 
-	<Input type="number" name="amount" prefix="€" step={0.01} required info={$_('create.amountInfo')}>
+	<Input value={data.expenses?.amount} type="number" name="amount" prefix="€" step={0.01} required info={$_('create.amountInfo')}>
 		{$_('create.amount')}
 	</Input>
 	
 	<div class="action">
-		<Button type="submit">{$_('create.action')}</Button>
+		<Button type="submit">{$_('edit.actions.save')}</Button>
 	</div>
 	
 </form>
 
-<button on:click={handleDelete}>{$_('edit.delete')}</button>
+<button on:click={handleDelete}>{$_('edit.actions.delete')}</button>
 
 <style lang="scss">
 	form {

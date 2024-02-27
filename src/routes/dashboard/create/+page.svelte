@@ -30,9 +30,6 @@
 		{ name: $_('create.months.december'), value: 12 }
 	] satisfies { name: string; value: number }[];
 
-	let testdata = {
-		testname: "random stuff"
-	}
 </script>
 
 <form method="POST" use:enhance>
