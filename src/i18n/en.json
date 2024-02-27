@@ -53,37 +53,6 @@
 	},
 	"edit": {
 		"title": "Edit an expense",
-		"name": "Name",
-		"nameInfo": "What is the name/recipient for this payment?",
-		"interval": "Interval",
-		"intervals": {
-			"monthly": "Monthly",
-			"quaterly": "Quaterly",
-			"yearly": "Yearly",
-			"custom": "Custom"
-		},
-		"custom": {
-			"label": "Custom Interval",
-			"every": "Every",
-			"months": "months"
-		},
-		"monthOfPayment": "Month of payment",
-		"months": {
-			"january": "January",
-			"february": "February",
-			"march": "March",
-			"april": "April",
-			"may": "May",
-			"june": "June",
-			"july": "July",
-			"august": "August",
-			"september": "September",
-			"october": "October",
-			"november": "November",
-			"december": "December"
-		},
-		"amount": "Amount",
-		"amountInfo": "How much money will be withdrawn each period?",
 		"actions": {
 			"create": "Create expense",
 			"save": "Save expense",
