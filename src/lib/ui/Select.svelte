@@ -1,11 +1,12 @@
 <script lang="ts">
 	export let name: string;
 	export let options: { name: string; value: string | number }[];
+	export let value: string | number | null | undefined;
 </script>
 
 <div class="select-wrapper">
 	<label for={name}><slot /></label>
-	<select id={name} {name}>
+	<select id={name} {name} bind:value>
 		{#each options as option}
 			<option value={option.value}>{option.name}</option>
 		{/each}

@@ -3,7 +3,6 @@ import type { Actions, PageServerLoad } from './$types';
 import prisma from '$lib/prisma';
 import { z } from 'zod';
 
-
 const saveExpenseSchema = z.object({
 	name: z.string().min(1).trim(),
 	interval: z.enum(['monthly', 'quaterly', 'yearly', 'custom']),
@@ -13,7 +12,7 @@ const saveExpenseSchema = z.object({
 });
 
 export const actions: Actions = {
-    updateExpense: async (event) => {
+	updateExpense: async (event) => {
 		const session = await event.locals.getSession();
 
 		if (!session?.user?.email) {
@@ -29,7 +28,7 @@ export const actions: Actions = {
 
 		try {
 			await prisma.expense.update({
-                where: {id: event.params.uuid},
+				where: { id: event.params.uuid },
 				data: {
 					name: expenseData.data.name,
 					amount: expenseData.data.amount,
@@ -46,33 +45,37 @@ export const actions: Actions = {
 
 		throw redirect(303, '/dashboard');
 	},
+	deleteExpense: async (event) => {
+		const session = await event.locals.getSession();
 
-    deleteExpense: async ({ params: { uuid } }) => {
-        // add usermail from sesion to query for valitation to be the right user
+		if (!session?.user?.email) {
+			return fail(401);
+		}
+
 		await prisma.expense.delete({
-            where: { id: uuid },
-        });
+			where: { id: event.params.uuid, user: { email: session.user.email } }
+		});
 
-        throw redirect(303, '/dashboard')
-    }
+		throw redirect(303, '/dashboard');
+	}
 };
 
-
-export const load: PageServerLoad = async ({parent, params }) => {
+export const load: PageServerLoad = async ({ parent, params }) => {
 	const { session } = await parent();
 
 	if (!session?.user?.email) {
 		throw redirect(307, '/login');
 	}
 
+	const expense = await prisma.expense.findFirst({
+		where: { id: params.uuid, user: { email: session.user.email } }
+	});
+
+	if (!expense) {
+		throw redirect(303, '/dashboard');
+	}
+
 	return {
-		// todo: mail mit in query einfügen { where: { user: { email: session.user.email } } })
-        expenses: prisma.expense.findFirst({ 
-            where: {id: params.uuid}
-			}
-		)
-        //oder user
+		expense
 	};
 };
-
-

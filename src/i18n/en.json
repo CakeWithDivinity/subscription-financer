@@ -53,9 +53,8 @@
 	},
 	"edit": {
 		"title": "Edit an expense",
+		"action": "Save expense",
 		"actions": {
-			"create": "Create expense",
-			"save": "Save expense",
 			"delete": "Delete expense"
 		},
 		"delete": {
@@ -64,5 +63,4 @@
 			"confirm": "Delete"
 		}
 	}
-
 }

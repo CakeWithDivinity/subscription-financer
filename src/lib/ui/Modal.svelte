@@ -1,67 +1,48 @@
-<script>
-    import { closeModal } from 'svelte-modals'
-  
-    // provided by <Modals />
-    export let isOpen
-  
-    export let message
-    export let onConfirm
-    export let labels = { cancel: 'Cancel', confirm: 'OK' }
+<script lang="ts">
+	import { closeModal } from 'svelte-modals';
+	import { _ } from 'svelte-i18n';
+	import Button from './Button.svelte';
 
-  </script>
+	export let isOpen: boolean;
+	export let message: string;
+	export let onConfirm: () => void;
+	export let labels = { cancel: 'confirmModal.cancel', confirm: 'confirmModal.ok' };
+</script>
 
-  {#if isOpen}
-    <div role="dialog" class="modal">
-      <div class="contents">
-        <p>{message}</p>
-        <div class="actions">
-          <button on:click={closeModal}> {labels?.cancel}</button>
-          <button on:click={onConfirm}> {labels?.confirm}</button>
-        </div>
-      </div>
-    </div>
-  {/if}
-  
-  <style>
-    .modal {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  
-      /* allow click-through to backdrop */
-      pointer-events: none;
-    }
-  
-    .contents {
-      min-width: 240px;
-      border-radius: 6px;
-      padding: 16px;
-      background: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      pointer-events: auto;
-    }
-  
-    h2 {
-      text-align: center;
-      font-size: 24px;
-    }
-  
-    p {
-      text-align: center;
-      margin-top: 16px;
-    }
-  
-    .actions {
-      margin-top: 32px;
-      display: flex;
-      justify-content: flex-end;
-    }
-  
-  </style>
+{#if isOpen}
+	<div role="dialog" class="modal">
+		<div class="contents">
+			<p>{message}</p>
+			<div class="actions">
+				<Button on:click={closeModal}>{$_(labels.cancel)}</Button>
+				<Button on:click={onConfirm} isDestructive={true}>{$_(labels.confirm)}</Button>
+			</div>
+		</div>
+	</div>
+{/if}
+
+<style lang="scss">
+	.modal {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 1rem;
+	}
+
+	.contents {
+		background-color: var(--secondary);
+		padding: 2rem;
+		border-radius: 5px;
+		text-align: center;
+	}
+
+	.actions {
+		display: flex;
+		gap: 1rem;
+	}
+</style>
