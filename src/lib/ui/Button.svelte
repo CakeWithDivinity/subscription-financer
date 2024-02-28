@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let type: 'button' | 'submit' = 'button';
+	export let isDestructive = false;
 </script>
 
-<button {type} on:click>
+<button {type} class:is-destructive={isDestructive} on:click>
 	<slot />
 </button>
 
@@ -22,5 +23,9 @@
 		-webkit-tap-highlight-color: transparent;
 		transition: all 125ms ease;
 		width: 100%;
+
+		&.is-destructive {
+			background-color: #e82e2e;
+		}
 	}
 </style>
