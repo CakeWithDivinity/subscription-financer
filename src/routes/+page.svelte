@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
 	import Link from '$lib/ui/Link.svelte';
-
-	import { page } from '$app/stores';
 </script>
 
 <div class="hero">
 	<h1>{$_('hero.heading')}</h1>
 	<p>{$_('hero.subtitle')}</p>
-	<p>{$page.data.session?.user?.email}</p>
 	<div>
 		<Link href="/register">{$_('hero.signUpButton')}</Link>
 		<Link type="text" href="/login">{$_('auth.existingAccount')}</Link>
