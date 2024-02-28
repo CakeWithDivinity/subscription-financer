@@ -7,7 +7,6 @@
 	import { _ } from 'svelte-i18n';
 	import { openModal, closeModal } from 'svelte-modals';
 	import ConfirmModal from '$lib/ui/Modal.svelte';
-	import { ExpenseInterval } from '@prisma/client';
 
 	const intervalOptions = [
 		{ name: $_('create.intervals.monthly'), value: 'monthly' },
@@ -33,9 +32,8 @@
 		{ name: $_('create.months.december'), value: 12 }
 	] satisfies { name: string; value: number }[];
 
-
-	let deleteform: HTMLFormElement
-	let updateform: HTMLFormElement
+	let deleteform: HTMLFormElement;
+	let updateform: HTMLFormElement;
 
 	function handleDelete() {
 		openModal(ConfirmModal, {
@@ -46,7 +44,7 @@
 			},
 			onConfirm: () => {
 				console.log('confirmed deletion');
-				deleteform.submit()
+				deleteform.submit();
 				closeModal();
 			}
 		});
@@ -62,17 +60,21 @@
 </pre>
 --->
 
-<form bind:this={deleteform} method="POST" action="?/deleteExpense">
-</form>
+<form bind:this={deleteform} method="POST" action="?/deleteExpense" />
 
 <form method="POST" action="?/updateExpense" use:enhance>
 	<h1>{$_('edit.title')}</h1>
-	
+
 	<Input
-	name="name" value={data.expenses.name} placeholder="Spotify premium" info={$_('create.nameInfo')} required>
-	{$_('create.name')}
+		name="name"
+		value={data.expenses.name}
+		placeholder="Spotify premium"
+		info={$_('create.nameInfo')}
+		required
+	>
+		{$_('create.name')}
 	</Input>
-	
+
 	<RadioSelect name="interval" options={intervalOptions} bind:value={intervalValue}>
 		{$_('create.interval')}
 	</RadioSelect>
@@ -82,7 +84,14 @@
 			<p class="custom-label">{$_('create.custom.label')}</p>
 			<div class="custom-interval">
 				<p>{$_('create.custom.every')}</p>
-				<Input value={data.expenses?.customMonths} name="customMonths" type="number" required placeholder="3" min={1} />
+				<Input
+					value={data.expenses?.customMonths}
+					name="customMonths"
+					type="number"
+					required
+					placeholder="3"
+					min={1}
+				/>
 				<p>{$_('create.custom.months')}</p>
 			</div>
 		</div>
@@ -92,14 +101,21 @@
 		{$_('create.monthOfPayment')}
 	</Select>
 
-	<Input value={data.expenses?.amount} type="number" name="amount" prefix="€" step={0.01} required info={$_('create.amountInfo')}>
+	<Input
+		value={data.expenses?.amount}
+		type="number"
+		name="amount"
+		prefix="€"
+		step={0.01}
+		required
+		info={$_('create.amountInfo')}
+	>
 		{$_('create.amount')}
 	</Input>
-	
+
 	<div class="action">
 		<Button type="submit">{$_('edit.actions.save')}</Button>
 	</div>
-	
 </form>
 
 <button on:click={handleDelete}>{$_('edit.actions.delete')}</button>
