@@ -12,12 +12,6 @@ const saveExpenseSchema = z.object({
 	amount: z.coerce.number().min(1)
 });
 
-/*
-const deleteExpenseSchema = z.object({
-});
-*/
-
-
 export const actions: Actions = {
     updateExpense: async (event) => {
 		const session = await event.locals.getSession();
@@ -52,19 +46,6 @@ export const actions: Actions = {
 
 		throw redirect(303, '/dashboard');
 	},
-    /*
-    updateExpense: async ({ params: { uuid } }) => {
-		// add usermail from sesion to query for valitation to be the right user
-        await prisma.expense.update({
-            where: { id: uuid },
-            data: {
-                name: "updated name",
-            },
-        });
-
-        throw redirect(303, `/dashboard`);
-    },
-	*/
 
     deleteExpense: async ({ params: { uuid } }) => {
         // add usermail from sesion to query for valitation to be the right user

@@ -37,7 +37,6 @@
 	let deleteform: HTMLFormElement
 	let updateform: HTMLFormElement
 
-	//TODO: put text in en.json
 	function handleDelete() {
 		openModal(ConfirmModal, {
 			message: $_('edit.delete.confirmQuestion'),
@@ -55,20 +54,13 @@
 	export let data;
 </script>
 
-
+<!---	
 <pre>
 	<code>
 		{JSON.stringify(data.expenses)}
 	</code>
 </pre>
-
-<!--
-  <form method="POST" action="?/updateExpense">
-	  <div class="action">
-		  <Button type="submit">{$_('edit.save')}</Button>
-	  </div>
-  </form>
--->
+--->
 
 <form bind:this={deleteform} method="POST" action="?/deleteExpense">
 </form>
