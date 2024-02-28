@@ -5,7 +5,7 @@
 
 <div class="disclaimer">
 	<h1>{$_('noExpensesDisclaimer.title')}</h1>
-	<Link href="/create">{$_('noExpensesDisclaimer.button')}</Link>
+	<Link href="/dashboard/create">{$_('noExpensesDisclaimer.button')}</Link>
 </div>
 
 <style lang="scss">

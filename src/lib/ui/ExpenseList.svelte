@@ -14,7 +14,7 @@
 <div class="expense-list">
 	<div class="header">
 		<h2>{$_('expenseList.title')}</h2>
-		<Link slim href="/create">{$_('expenseList.create')}</Link>
+		<Link slim href="/dashboard/create">{$_('expenseList.create')}</Link>
 	</div>
 
 	<div class="grid">
