@@ -27,7 +27,9 @@
 				<p />
 
 				{#each group[1] as expense}
-					<p class="month">{$_('create.months.' + MONTHS[expense.monthOfPayment]).slice(0, 3)}</p>
+					<p class="month">
+						{$_('create.months.' + MONTHS[expense.monthOfPayment - 1]).slice(0, 3)}
+					</p>
 					<p class="name">{expense.name}</p>
 					<p class="amount">{expense.amount}€</p>
 					<a class="edit" href="/dashboard/edit/{expense.id}"><Icon icon="ic:baseline-edit" /></a>
