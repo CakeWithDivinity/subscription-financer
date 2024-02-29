@@ -8,7 +8,7 @@ const createExpenseSchema = z.object({
 	interval: z.enum(['monthly', 'quaterly', 'yearly', 'custom']),
 	customMonths: z.coerce.number().min(1).optional(),
 	monthOfPayment: z.coerce.number().min(1).max(12),
-	amount: z.coerce.number().min(1)
+	amount: z.coerce.number().min(0)
 });
 
 export const actions: Actions = {
